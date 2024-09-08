@@ -1,0 +1,34 @@
+.operator-table-row__avatar {
+  background-color: #f04259 !important;
+}
+
+.operator-table-row__checkbox {
+  color: #668099 !important;
+}
+
+.operator-table-row__checkbox.Mui-checked {
+  color: #f04259 !important;
+}
+
+.operator-table-row__cell {
+  color: #292424 !important;
+  font-family: Rubik !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
+  border-bottom: 1px solid #cae0ed !important;
+
+  &--name {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px;
+  }
+
+  &--index {
+    font-family: Rubik !important;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #292424;
+  }
+}
