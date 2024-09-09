@@ -28,7 +28,7 @@ const OperatorTableRow: React.FC<OperatorTableRowProps> = ({
         <TableRow className="operator-table-row" key={operator.id}>
             <TableCell className="operator-table-row__cell">
                 <span className="operator-table-row__text operator-table-row__cell--index">
-                    {index + 1}
+                    {operator.id}
                 </span>
             </TableCell>
             <TableCell className="operator-table-row__cell">
