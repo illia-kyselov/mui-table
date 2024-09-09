@@ -2,7 +2,7 @@
   "name": "unitalk",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://illia-kyselov.github.io/mui-material-table/",
+  "homepage": "https://illia-kyselov.github.io/mui-table/",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
