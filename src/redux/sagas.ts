@@ -6,7 +6,7 @@ import {
     fetchFailure,
 } from "./slices";
 
-const API_TOKEN = "66a7f07b53c13f22a3d17fb1";
+const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 const baseURL = `https://${API_TOKEN}.mockapi.io/api`;
 
 function* fetchOperatorsSaga(): Generator<any, void, any> {

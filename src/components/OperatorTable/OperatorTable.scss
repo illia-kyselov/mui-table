@@ -1,5 +1,4 @@
 .operator-table__search {
-  padding: 16px;
   width: 300px;
 }
 
@@ -31,6 +30,31 @@
   .MuiSvgIcon-root {
     color: #14191f8f;
   }
+}
+
+.operator-table__select {
+  width: 300px;
+}
+
+.operator-control-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: baseline;
+  padding: 16px;
+}
+
+.operator-table__filter {
+  font-family: Rubik;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  opacity: 0.9;
+  color: #292424;
+}
+
+.operator-table__search-input {
+  margin: 0 !important;
 }
 
 .operator-table__search-input .MuiOutlinedInput-input::placeholder {

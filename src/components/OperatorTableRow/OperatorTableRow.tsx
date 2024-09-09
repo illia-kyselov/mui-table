@@ -11,25 +11,21 @@ interface OperatorTableRowProps {
         isWorking: boolean;
         createdAt: string;
     };
-    addons: {
-        SMTP: string;
-        JBOD: string;
-        additional: string;
-    };
+    addons: Record<string, string>;
     index: number;
+    addonFields: string[];
 }
 
 const OperatorTableRow: React.FC<OperatorTableRowProps> = ({
     operator,
     addons,
     index,
+    addonFields,
 }) => {
     return (
         <TableRow className="operator-table-row" key={operator.id}>
             <TableCell className="operator-table-row__cell">
-                <span className="operator-table-row__text operator-table-row__cell--index">
-                    {operator.id}
-                </span>
+                <span className="operator-table-row__cell--index">{operator.id}</span>
             </TableCell>
             <TableCell className="operator-table-row__cell">
                 <div className="operator-table-row__cell--name">
@@ -38,39 +34,25 @@ const OperatorTableRow: React.FC<OperatorTableRowProps> = ({
                         alt={operator.name}
                         src={operator.avatar}
                     />
-                    <span className="operator-table-row__text operator-table-row__text--name">
-                        {operator.name}
-                    </span>
+                    <span>{operator.name}</span>
                 </div>
             </TableCell>
-            <TableCell className="operator-table-row__cell operator-table-row__cell--checkbox">
+            <TableCell className="operator-table-row__cell">
                 <Checkbox
-                    className={`operator-table-row__checkbox ${!operator.isWorking ? "operator-table-row__checkbox--disabled" : ""
-                        }`}
+                    className="operator-table-row__checkbox"
                     checked={operator.isWorking}
-                    disabled={!operator.isWorking}
+                    disabled
                 />
             </TableCell>
-            <TableCell className="operator-table-row__cell operator-table-row__cell--created-at">
-                <span className="operator-table-row__text operator-table-row__text--created-at">
-                    {formatDate(operator.createdAt)}
-                </span>
+            <TableCell className="operator-table-row__cell">
+                <span>{formatDate(operator.createdAt)}</span>
             </TableCell>
-            <TableCell className="operator-table-row__cell operator-table-row__cell--smtp">
-                <span className="operator-table-row__text operator-table-row__text--smtp">
-                    {addons.SMTP}
-                </span>
-            </TableCell>
-            <TableCell className="operator-table-row__cell operator-table-row__cell--jbod">
-                <span className="operator-table-row__text operator-table-row__text--jbod">
-                    {addons.JBOD}
-                </span>
-            </TableCell>
-            <TableCell className="operator-table-row__cell operator-table-row__cell--additional">
-                <span className="operator-table-row__text operator-table-row__text--additional">
-                    {addons.additional}
-                </span>
-            </TableCell>
+
+            {addonFields.map((fieldName) => (
+                <TableCell key={fieldName} className="operator-table-row__cell">
+                    <span>{addons[fieldName] || "-"}</span>
+                </TableCell>
+            ))}
         </TableRow>
     );
 };

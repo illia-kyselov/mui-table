@@ -1,21 +1,26 @@
-import React from "react";
-import { TextField } from "@mui/material";
+import React from 'react';
+import { TextField } from '@mui/material';
 
 interface SearchInputProps {
     searchTerm: string;
-    handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ searchTerm, handleSearchChange }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ searchTerm, onSearchChange }) => {
     return (
         <TextField
             label="Пошук"
             placeholder="Ім’я користувача..."
             variant="outlined"
-            fullWidth
             margin="normal"
-            onChange={handleSearchChange}
+            onChange={onSearchChange}
             value={searchTerm}
+            className="operator-table__search-input"
+            slotProps={{
+                inputLabel: {
+                    shrink: true,
+                },
+            }}
         />
     );
 };

@@ -1,13 +1,13 @@
 .operator-table-header {
-    &__row {
-        border-bottom: 1px solid #CAE0ED !important;
-    }
+  &__row {
+    border-bottom: 2px solid #cae0ed !important;
+  }
 
-    &__text {
-        font-family: Rubik;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 24px;
-        color: #292424;
-    }
+  &__text {
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #292424;
+  }
 }
