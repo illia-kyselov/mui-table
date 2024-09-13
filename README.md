@@ -1,2 +1,1 @@
-# Demo
- [DEMO](https://illia-kyselov.github.io/mui-table/).
+[DEMO](https://illia-kyselov.github.io/mui-table/)
