@@ -5,7 +5,8 @@ import {
     TableContainer,
     Paper,
     TablePagination,
-    SelectChangeEvent
+    SelectChangeEvent,
+    Typography
 } from "@mui/material";
 import TableHeader from "../TableHeader/TableHeader";
 import SearchInput from "../SearchInput/SearchInput";
@@ -58,7 +59,9 @@ const OperatorTable: React.FC = () => {
 
     return (
         <>
-            <div className="operator-table__title">Оператори</div>
+            <Typography variant="h4" gutterBottom>
+                Оператори
+            </Typography>
             <TableContainer component={Paper}>
                 <div className="operator-control-container">
                     <SearchInput searchTerm={searchTerm} onSearchChange={handleSearchChange} />
