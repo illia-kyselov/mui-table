@@ -9,7 +9,8 @@ export const store = configureStore({
     reducer: {
         operators: operatorReducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(watchFetchOperators);

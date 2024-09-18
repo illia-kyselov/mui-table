@@ -1,22 +1,18 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from 'redux-saga/effects';
 import {
     fetchOperators,
     fetchOperatorsSuccess,
     fetchAddonsSuccess,
     fetchFailure,
-} from "./slices";
-
-const API_TOKEN = process.env.REACT_APP_API_TOKEN;
-const baseURL = `https://${API_TOKEN}.mockapi.io/api`;
+} from './slices';
+import { fetchOperatorsApi, fetchOperatorAddonsApi } from '../api/operatorApi';
 
 function* fetchOperatorsSaga(): Generator<any, void, any> {
     try {
-        const operatorResponse: Response = yield fetch(`${baseURL}/operator`);
-        const operators: any = yield operatorResponse.json();
+        const operators = yield call(fetchOperatorsApi);
         yield put(fetchOperatorsSuccess(operators));
 
-        const addonResponse: Response = yield fetch(`${baseURL}/operatorAddon`);
-        const operatorAddons: any = yield addonResponse.json();
+        const operatorAddons = yield call(fetchOperatorAddonsApi);
         yield put(fetchAddonsSuccess(operatorAddons));
     } catch (error: any) {
         yield put(fetchFailure(error.message));

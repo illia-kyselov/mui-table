@@ -1,6 +1,6 @@
 export const mergeAddons = (operatorAddons: any, operatorId: string) => {
     const operatorSpecificAddons = operatorAddons.filter(
-        (addon: any) => addon.id === operatorId
+        (addon: any) => addon.id === operatorId,
     );
 
     const mergedAddons = operatorSpecificAddons.reduce(
@@ -8,7 +8,7 @@ export const mergeAddons = (operatorAddons: any, operatorId: string) => {
             acc[addon.fieldName] = addon.text;
             return acc;
         },
-        {}
+        {},
     );
 
     return mergedAddons;

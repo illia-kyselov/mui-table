@@ -1,6 +1,6 @@
-import React from "react";
-import { TableBody, TableRow, TableCell, Typography } from "@mui/material";
-import OperatorTableRow from "../OperatorTableRow/OperatorTableRow";
+import React from 'react';
+import { TableBody, TableRow, TableCell, Typography } from '@mui/material';
+import OperatorTableRow from '../OperatorTableRow/OperatorTableRow';
 
 interface OperatorTableBodyProps {
     sortedOperators: any[];
@@ -24,7 +24,11 @@ const OperatorTableBody: React.FC<OperatorTableBodyProps> = ({
             {sortedOperators.length === 0 ? (
                 <TableRow>
                     <TableCell colSpan={addonFields.length + 4} align="center">
-                        <Typography variant="h6" className="operator-table__empty-message">
+                        <Typography
+                            variant="h6"
+                            color="error"
+                            sx={{ fontWeight: 'bold' }}
+                        >
                             Упс... Нічого не знайдено
                         </Typography>
                     </TableCell>
@@ -35,8 +39,8 @@ const OperatorTableBody: React.FC<OperatorTableBodyProps> = ({
                     .map((operator: any, index: number) => (
                         <OperatorTableRow
                             key={operator.id}
-                            operator={operator}
                             index={index}
+                            operator={operator}
                             addons={mergeAddons(operatorAddons, operator.id)}
                             addonFields={addonFields}
                         />

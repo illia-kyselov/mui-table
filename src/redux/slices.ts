@@ -15,11 +15,17 @@ const operatorSlice = createSlice({
         fetchOperators: (state: State) => {
             state.loading = true;
         },
-        fetchOperatorsSuccess: (state: State, action: PayloadAction<Operator[]>) => {
+        fetchOperatorsSuccess: (
+            state: State,
+            action: PayloadAction<Operator[]>,
+        ) => {
             state.operators = action.payload;
             state.loading = false;
         },
-        fetchAddonsSuccess: (state: State, action: PayloadAction<OperatorAddon[]>) => {
+        fetchAddonsSuccess: (
+            state: State,
+            action: PayloadAction<OperatorAddon[]>,
+        ) => {
             state.operatorAddons = action.payload;
             state.loading = false;
         },
@@ -30,5 +36,10 @@ const operatorSlice = createSlice({
     },
 });
 
-export const { fetchOperators, fetchOperatorsSuccess, fetchAddonsSuccess, fetchFailure } = operatorSlice.actions;
+export const {
+    fetchOperators,
+    fetchOperatorsSuccess,
+    fetchAddonsSuccess,
+    fetchFailure,
+} = operatorSlice.actions;
 export default operatorSlice.reducer;

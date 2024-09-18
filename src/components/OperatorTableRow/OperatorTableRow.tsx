@@ -1,7 +1,7 @@
-import React from "react";
-import { TableRow, TableCell, Avatar, Checkbox } from "@mui/material";
-import "./OperatorTableRow.scss";
-import { formatDate } from "../../utils/formatters";
+import React from 'react';
+import { TableRow, TableCell, Avatar, Checkbox, Box } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { formatDate } from '../../utils/formatters';
 
 interface OperatorTableRowProps {
     operator: {
@@ -12,49 +12,84 @@ interface OperatorTableRowProps {
         createdAt: string;
     };
     addons: Record<string, string>;
-    index: number;
     addonFields: string[];
+    index: number;
 }
 
-const OperatorTableRow: React.FC<OperatorTableRowProps> = ({
-    operator,
-    addons,
-    index,
-    addonFields,
-}) => {
-    return (
-        <TableRow className="operator-table-row" key={operator.id}>
-            <TableCell className="operator-table-row__cell">
-                <span className="operator-table-row__cell--index">{operator.id}</span>
-            </TableCell>
-            <TableCell className="operator-table-row__cell">
-                <div className="operator-table-row__cell--name">
-                    <Avatar
-                        className="operator-table-row__avatar"
-                        alt={operator.name}
-                        src={operator.avatar}
-                    />
-                    <span>{operator.name}</span>
-                </div>
-            </TableCell>
-            <TableCell className="operator-table-row__cell">
-                <Checkbox
-                    className="operator-table-row__checkbox"
-                    checked={operator.isWorking}
-                    disabled
-                />
-            </TableCell>
-            <TableCell className="operator-table-row__cell">
-                <span>{formatDate(operator.createdAt)}</span>
-            </TableCell>
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    color: theme.palette.text.primary,
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.body1.fontWeight,
+    lineHeight: theme.typography.body1.lineHeight,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+}));
 
-            {addonFields.map((fieldName) => (
-                <TableCell key={fieldName} className="operator-table-row__cell">
-                    <span>{addons[fieldName] || "-"}</span>
-                </TableCell>
-            ))}
-        </TableRow>
-    );
-};
+const TextBox = styled(Box)(({ theme }) => ({
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.body1.fontWeight,
+    lineHeight: theme.typography.body1.lineHeight,
+}));
+
+const BoldTextBox = styled(Box)(({ theme }) => ({
+    fontSize: theme.typography.body2.fontSize,
+    fontWeight: theme.typography.body2.fontWeight,
+    lineHeight: theme.typography.body2.lineHeight,
+}));
+
+const OperatorTableRow: React.FC<OperatorTableRowProps> = React.memo(
+    ({ operator, addons, addonFields, index }) => {
+        const theme = useTheme();
+
+        return (
+            <TableRow key={operator.id} id={`${index}`}>
+                <StyledTableCell>
+                    <BoldTextBox>{operator.id}</BoldTextBox>
+                </StyledTableCell>
+
+                <StyledTableCell>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: theme.spacing(1),
+                        }}
+                    >
+                        <Avatar
+                            alt={operator.name}
+                            src={operator.avatar}
+                            sx={{ backgroundColor: theme.palette.primary.main }}
+                        />
+                        <TextBox>{operator.name}</TextBox>
+                    </Box>
+                </StyledTableCell>
+
+                <StyledTableCell>
+                    <Checkbox
+                        checked={operator.isWorking}
+                        disabled
+                        sx={{
+                            '& .MuiSvgIcon-root': {
+                                color: theme.palette.secondary.main,
+                            },
+                            '&.Mui-checked .MuiSvgIcon-root': {
+                                color: theme.palette.primary.main,
+                            },
+                        }}
+                    />
+                </StyledTableCell>
+
+                <StyledTableCell>
+                    <TextBox>{formatDate(operator.createdAt)}</TextBox>
+                </StyledTableCell>
+
+                {addonFields.map((fieldName) => (
+                    <StyledTableCell key={fieldName}>
+                        <TextBox>{addons[fieldName] || '-'}</TextBox>
+                    </StyledTableCell>
+                ))}
+            </TableRow>
+        );
+    },
+);
 
 export default OperatorTableRow;

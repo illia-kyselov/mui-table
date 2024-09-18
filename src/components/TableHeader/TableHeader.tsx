@@ -1,34 +1,48 @@
 import React from 'react';
-import { TableHead, TableRow, TableCell } from '@mui/material';
-import "./TableHeader.scss";
+import { TableHead, TableRow, TableCell, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 interface TableHeaderProps {
     addonFields: string[];
 }
 
-const TableHeader: React.FC<TableHeaderProps> = ({ addonFields }) => (
-    <TableHead className="operator-table-header">
-        <TableRow className="operator-table-header__row">
-            <TableCell>
-                <span className="operator-table-header__text">#</span>
-            </TableCell>
-            <TableCell>
-                <span className="operator-table-header__text">Користувач</span>
-            </TableCell>
-            <TableCell>
-                <span className="operator-table-header__text">Працює</span>
-            </TableCell>
-            <TableCell>
-                <span className="operator-table-header__text">Дата / Час створення</span>
-            </TableCell>
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    borderBottom: `2px solid ${theme.palette.divider}`,
+}));
 
-            {addonFields.map((fieldName) => (
-                <TableCell key={fieldName}>
-                    <span className="operator-table-header__text">{fieldName}</span>
+const StyledBox = styled(Box)(({ theme }) => ({
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '14px',
+    fontWeight: 500,
+    lineHeight: '24px',
+    color: theme.palette.text.primary,
+}));
+
+const TableHeader: React.FC<TableHeaderProps> = ({ addonFields }) => {
+    return (
+        <TableHead>
+            <StyledTableRow>
+                <TableCell>
+                    <StyledBox>#</StyledBox>
                 </TableCell>
-            ))}
-        </TableRow>
-    </TableHead>
-);
+                <TableCell>
+                    <StyledBox>Користувач</StyledBox>
+                </TableCell>
+                <TableCell>
+                    <StyledBox>Працює</StyledBox>
+                </TableCell>
+                <TableCell>
+                    <StyledBox>Дата / Час створення</StyledBox>
+                </TableCell>
+
+                {addonFields.map((fieldName) => (
+                    <TableCell key={fieldName}>
+                        <StyledBox>{fieldName}</StyledBox>
+                    </TableCell>
+                ))}
+            </StyledTableRow>
+        </TableHead>
+    );
+};
 
 export default TableHeader;

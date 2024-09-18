@@ -1,21 +1,30 @@
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    SelectChangeEvent,
+} from '@mui/material';
 
 interface OperatorSortProps {
     sortType: string;
     onSortChange: (event: SelectChangeEvent<string>) => void;
 }
 
-const OperatorSort: React.FC<OperatorSortProps> = ({ sortType, onSortChange }) => {
+const OperatorSort: React.FC<OperatorSortProps> = ({
+    sortType,
+    onSortChange,
+}) => {
     return (
-        <FormControl variant="outlined" className="operator-table__select">
+        <FormControl variant="outlined">
             <InputLabel id="sort-select-label">Сортування</InputLabel>
+
             <Select
                 labelId="sort-select-label"
                 value={sortType}
                 onChange={onSortChange}
-                label="Сортировка"
-                className='operator-table__filter'
+                label="Сортування"
             >
                 <MenuItem value="Не вибрано">Не вибрано</MenuItem>
                 <MenuItem value="name-asc">Користувач A-Я</MenuItem>

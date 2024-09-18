@@ -1,21 +1,30 @@
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    SelectChangeEvent,
+} from '@mui/material';
 
 interface OperatorFilterProps {
     filterType: string;
     onFilterChange: (event: SelectChangeEvent<string>) => void;
 }
 
-const OperatorFilter: React.FC<OperatorFilterProps> = ({ filterType, onFilterChange }) => {
+const OperatorFilter: React.FC<OperatorFilterProps> = ({
+    filterType,
+    onFilterChange,
+}) => {
     return (
-        <FormControl variant="outlined" className="operator-table__select">
+        <FormControl variant="outlined">
             <InputLabel id="filter-select-label">Фільтр</InputLabel>
+
             <Select
                 labelId="filter-select-label"
                 value={filterType}
                 onChange={onFilterChange}
                 label="Фільтр"
-                className='operator-table__filter'
             >
                 <MenuItem value="Всі">Всі</MenuItem>
                 <MenuItem value="isWorking">Працює</MenuItem>
